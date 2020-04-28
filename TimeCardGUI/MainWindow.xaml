@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeCardGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="600" Width="1000">
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"></ColumnDefinition>
+                <ColumnDefinition Width="45"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Menu Grid.Column="0" Style="{StaticResource TopMenuStyle}">
+                <MenuItem Header="File" Style="{StaticResource MenuItemStyle}"></MenuItem>
+            </Menu>
+            <Label Grid.Column="1" Style="{StaticResource LoginLabelStyle}">Login:</Label>
+            <TextBox Grid.Column="2" Style="{StaticResource TextBoxStyle}"></TextBox>
+        </Grid>
+        <DataGrid x:Name="TimeCard_Grid" Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="2*">
+                    <DataGridTextColumn.Header>Name:</DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="3*">
+                    <DataGridTextColumn.Header>Clock-In Time:</DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="3*">
+                    <DataGridTextColumn.Header>Clock-Out Time:</DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="7*">
+                    <DataGridTextColumn.Header>Description:</DataGridTextColumn.Header>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </Window>
