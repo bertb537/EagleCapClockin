@@ -65,5 +65,8 @@
       <DependentUpon>TimeCardDataset.xsd</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="TimeCardXML.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

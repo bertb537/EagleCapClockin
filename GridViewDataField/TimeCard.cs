@@ -35,7 +35,7 @@ namespace GridViewDataField
 
         public float GetTime(DateTime fromDate, TimeCategory timeCategory, int timeOffset)
         {
-            throw new NotImplementedException("ClockIn method not implimented yet");
+            throw new NotImplementedException("GetTime(TimeCategory) method not implimented yet");
         }
 
         // Member Data
