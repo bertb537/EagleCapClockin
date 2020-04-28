@@ -6,6 +6,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace GridViewDataField
 {
@@ -42,5 +43,6 @@ namespace GridViewDataField
         private TimeCardDataset m_timecard;
         public String Username { get; set; }
         private List<String> Users;
+        private String XmlPath = "TimeCardXML.xml";
     }
 }
