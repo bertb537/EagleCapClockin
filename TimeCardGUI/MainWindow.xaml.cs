@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridViewDataField;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,16 @@ namespace TimeCardGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public TimeCardInterface timeCard;
         public MainWindow()
         {
+            TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
+            timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
             // Load data into the table TimeCard. You can modify this code as needed.
             TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter = new TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter();

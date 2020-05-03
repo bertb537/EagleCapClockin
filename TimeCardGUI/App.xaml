@@ -18,6 +18,7 @@
             <Setter Property="Height" Value="470"/>
             <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
             <Setter Property="ItemsSource" Value="{Binding}"/>
+            <Setter Property="IsReadOnly" Value="True"/>
             <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridHeaderStyle}"/>
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
