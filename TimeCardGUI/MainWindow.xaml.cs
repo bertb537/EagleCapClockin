@@ -24,5 +24,16 @@ namespace TimeCardGUI
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
+            // Load data into the table TimeCard. You can modify this code as needed.
+            TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter = new TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter();
+            timeCardDataSetTimeCardTableAdapter.Fill(timeCardDataSet.TimeCard);
+            System.Windows.Data.CollectionViewSource timeCardViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("timeCardViewSource")));
+            timeCardViewSource.View.MoveCurrentToFirst();
+        }
     }
 }

@@ -13,10 +13,12 @@ namespace GridViewDataField
     public class TimeCard
     {
         public enum TimeCategory
-        { 
+        {
             DAY, WEEK, MONTH, QUARTER
         }
         public TimeCard() { }
+
+        // Public Methods
         public void ClockIn()
         {
             throw new NotImplementedException("ClockIn method not implimented yet");
@@ -39,9 +41,13 @@ namespace GridViewDataField
             throw new NotImplementedException("GetTime(TimeCategory) method not implimented yet");
         }
 
+        // Private Methods
+
+        // Getters/Setters
+        public String Username {get; set;}
+
         // Member Data
-        private TimeCardDataset m_timecard;
-        public String Username { get; set; }
+        private String username;
         private List<String> Users;
         private String XmlPath = "TimeCardXML.xml";
     }
