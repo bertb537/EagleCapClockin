@@ -17,7 +17,7 @@ namespace GridViewDataField
         {
             DAY, WEEK, MONTH, QUARTER
         }
-        public TimeCardInterface(DataTable &table) 
+        public TimeCardInterface(DataTable table)
         {
             timeCard = table;
         }
@@ -48,7 +48,7 @@ namespace GridViewDataField
         // Private Methods
 
         // Getters/Setters
-        public String Username {get; set;}
+        public String Username { get; set; }
         public List<String> Users { get; set; }
 
         // Member Data

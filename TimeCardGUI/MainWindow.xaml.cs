@@ -22,21 +22,32 @@ namespace TimeCardGUI
     public partial class MainWindow : Window
     {
         public TimeCardInterface timeCard;
+        public TimeCardGUI.TimeCardDataSet timeCardDataSet;
+        public enum Clocked { IN, OUT }
+        public Clocked UserState = Clocked.OUT;
+
         public MainWindow()
         {
-            TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
-            timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
-            InitializeComponent();
+            InitializeComponent();;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
+            timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
             // Load data into the table TimeCard. You can modify this code as needed.
             TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter = new TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter();
             timeCardDataSetTimeCardTableAdapter.Fill(timeCardDataSet.TimeCard);
             System.Windows.Data.CollectionViewSource timeCardViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("timeCardViewSource")));
             timeCardViewSource.View.MoveCurrentToFirst();
+            timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(UserState == Clocked.IN)
+            {
+                timeCard.ClockIn();
+            }
         }
     }
 }
