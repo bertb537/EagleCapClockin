@@ -452,7 +452,6 @@ namespace TimeCardGUI {
                 this.columnName.Unique = true;
                 this.columnName.MaxLength = 50;
                 this._columnClock_In.AllowDBNull = false;
-                this._columnClock_Out.AllowDBNull = false;
                 this.columnDescription.MaxLength = 2147483647;
             }
             
@@ -620,7 +619,12 @@ namespace TimeCardGUI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public System.DateTime _Clock_Out {
                 get {
-                    return ((global::System.DateTime)(this[this.tableTimeCard._Clock_OutColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableTimeCard._Clock_OutColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Clock-Out\' in table \'TimeCard\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableTimeCard._Clock_OutColumn] = value;
@@ -641,6 +645,18 @@ namespace TimeCardGUI {
                 set {
                     this[this.tableTimeCard.DescriptionColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Is_Clock_OutNull() {
+                return this.IsNull(this.tableTimeCard._Clock_OutColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Set_Clock_OutNull() {
+                this[this.tableTimeCard._Clock_OutColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -831,8 +847,8 @@ namespace TimeCardGUI.TimeCardDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TimeCard] ([Name], [Clock-In], [Clock-Out], [Description]) VAL" +
-                "UES (@Name, @p1, @p3, @Description);\r\nSELECT Name, [Clock-In], [Clock-Out], Desc" +
-                "ription FROM TimeCard WHERE (Name = @Name)";
+                "UES (@Name, @p1, @p3, @Description);\nSELECT Name, [Clock-In], [Clock-Out], Descr" +
+                "iption FROM TimeCard WHERE (Name = @Name)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Clock-In", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -926,7 +942,7 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Name, System.DateTime p2, System.DateTime p4) {
+        public virtual int Delete(string Original_Name, System.DateTime p2, global::System.Nullable<global::System.DateTime> p4) {
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
@@ -934,7 +950,12 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Name));
             }
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(p2));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(p4));
+            if ((p4.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(p4.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -955,7 +976,7 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Name, System.DateTime p1, System.DateTime p3, string Description) {
+        public virtual int Insert(string Name, System.DateTime p1, global::System.Nullable<global::System.DateTime> p3, string Description) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -963,7 +984,12 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Name));
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(p1));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(p3));
+            if ((p3.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(p3.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             if ((Description == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
@@ -990,7 +1016,7 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, System.DateTime p1, System.DateTime p3, string Description, string Original_Name, System.DateTime p2, System.DateTime p4) {
+        public virtual int Update(string Name, System.DateTime p1, global::System.Nullable<global::System.DateTime> p3, string Description, string Original_Name, System.DateTime p2, global::System.Nullable<global::System.DateTime> p4) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -998,7 +1024,12 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Name));
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(p1));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(p3));
+            if ((p3.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(p3.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             if ((Description == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
@@ -1012,7 +1043,12 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Name));
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(p2));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(p4));
+            if ((p4.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(p4.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1033,7 +1069,7 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime p1, System.DateTime p3, string Description, string Original_Name, System.DateTime p2, System.DateTime p4) {
+        public virtual int Update(System.DateTime p1, global::System.Nullable<global::System.DateTime> p3, string Description, string Original_Name, System.DateTime p2, global::System.Nullable<global::System.DateTime> p4) {
             return this.Update(Original_Name, p1, p3, Description, Original_Name, p2, p4);
         }
     }

@@ -7,7 +7,9 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
 using System.Xml.Serialization;
+using TimeCardGUI;
 
 /*
 *   Author: Brett Bertrand
@@ -20,16 +22,20 @@ namespace TimeCardGUI
     /// <summary>
     /// TimeCard Database Interface Object
     /// </summary>
-    public class TimeCardInterface
+    public class TimeCardInterface : TimeCardDataSet
     {
         public enum TimeCategory
         {
             DAY, WEEK, MONTH, QUARTER
         }
+
         public enum Clocked { IN, OUT }
-        public TimeCardInterface(DataTable table)
+
+        public TimeCardInterface()
         {
-            timeCard = table;
+            userState = Clocked.OUT;
+            timeCard = TimeCard;
+            username = "Brett Bertrand";
         }
 
         // Public Methods
@@ -40,15 +46,38 @@ namespace TimeCardGUI
         /// <returns>int</returns>
         public int TimePunch()
         {
-            throw new NotImplementedException("ClockOut method not implimented yet");
             throw new NotImplementedException("TimePunch method not implimented yet");
+        }
+
+        /// <summary>
+        /// Clocks User In
+        /// </summary>
+        public void ClockIn()
+        {
+            newRow = timeCard.NewRow();
+            newRow[0] = username;
+            newRow[1] = DateTime.Now.ToString();
+            newRow[3] = "";
+            timeCard.Rows.Add(newRow);
+            userState = Clocked.IN;
+            timeCard.
+        }
+
+        /// <summary>
+        /// Clocks User Out
+        /// </summary>
+        public void ClockOut()
+        {
+            newRow[2] = DateTime.Now.ToString("en - US");
+            newRow[3] = "<Description>";
+            userState = Clocked.OUT;
         }
 
         /// <summary>
         /// Prompt user for description and write to the TimeCard
         /// </summary>
         /// <param name="description">String</param>
-        private void SetDescription(String description)
+        public void SetDescription(String description)
         {
             throw new NotImplementedException("SetDescription method not implimented yet");
         }
@@ -78,29 +107,18 @@ namespace TimeCardGUI
 
         // Private Methods
 
-        /// <summary>
-        /// Clocks User In
-        /// </summary>
-        public void ClockIn()
-        {
-            throw new NotImplementedException("ClockIn method not implimented yet");
-        }
-
-        /// <summary>
-        /// Clocks User Out
-        /// </summary>
-        public void ClockOut()
-        {
-            throw new NotImplementedException("ClockOut method not implimented yet");
-        }
-
         // Getters/Setters
         public String Username { get; set; }
         public List<String> Users { get; set; }
+        public Clocked UserState
+        {
+            get{ return userState; }
+        }
         // Member Data
         private DataTable timeCard;
         private String username;
         private List<String> users;
-        public Clocked UserState = Clocked.OUT;
+        private Clocked userState;
+        private DataRow newRow;
     }
 }

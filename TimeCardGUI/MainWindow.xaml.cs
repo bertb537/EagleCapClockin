@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,12 +23,10 @@ namespace TimeCardGUI
     {
         public TimeCardInterface timeCard;
         public TimeCardGUI.TimeCardDataSet timeCardDataSet;
-        public enum Clocked { IN, OUT }
-        public Clocked UserState = Clocked.OUT;
 
         public MainWindow()
         {
-            InitializeComponent();;
+            InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -38,14 +37,22 @@ namespace TimeCardGUI
             timeCardDataSetTimeCardTableAdapter.Fill(timeCardDataSet.TimeCard);
             System.Windows.Data.CollectionViewSource timeCardViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("timeCardViewSource")));
             timeCardViewSource.View.MoveCurrentToFirst();
-            timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
+            timeCard = new TimeCardInterface();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(UserState == Clocked.IN)
+            if(timeCard.UserState == TimeCardInterface.Clocked.OUT)
             {
                 timeCard.ClockIn();
+                CardPunchBtn.Content = "Clock-Out";
+            }
+            else if(timeCard.UserState == TimeCardInterface.Clocked.IN)
+            {
+                timeCard.ClockOut();
+                // Get Description From User
+                //timeCard.SetDescription(STRING);
+                CardPunchBtn.Content = "Clock-In";
             }
         }
     }
