@@ -20,48 +20,33 @@ namespace TimeCardGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-<<<<<<< HEAD
         public TimeCardInterface timeCard;
-<<<<<<< HEAD
-<<<<<<< HEAD
         public TimeCardGUI.TimeCardDataSet timeCardDataSet;
+        public enum Clocked { IN, OUT }
+        public Clocked UserState = Clocked.OUT;
 
-=======
->>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
-=======
->>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
-=======
->>>>>>> parent of 4f5398c... Saving Point: Reconfiguring GridViewDataField Class (Renamed TimeCardInterface)
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
+            timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
             // Load data into the table TimeCard. You can modify this code as needed.
             TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter = new TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter();
             timeCardDataSetTimeCardTableAdapter.Fill(timeCardDataSet.TimeCard);
             System.Windows.Data.CollectionViewSource timeCardViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("timeCardViewSource")));
             timeCardViewSource.View.MoveCurrentToFirst();
-<<<<<<< HEAD
-<<<<<<< HEAD
             timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //if(UserState == Clocked.IN)
-            //{
-            //    timeCard.ClockIn();
-            //    timeCard.GetTime()
-            //}
-=======
->>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
-=======
->>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
+            if(UserState == Clocked.IN)
+            {
+                timeCard.ClockIn();
+            }
         }
     }
 }
