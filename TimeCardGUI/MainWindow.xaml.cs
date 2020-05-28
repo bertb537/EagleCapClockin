@@ -20,6 +20,7 @@ namespace TimeCardGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+<<<<<<< HEAD
         public TimeCardInterface timeCard;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -29,15 +30,16 @@ namespace TimeCardGUI
 >>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
 =======
 >>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
+=======
+>>>>>>> parent of 4f5398c... Saving Point: Reconfiguring GridViewDataField Class (Renamed TimeCardInterface)
         public MainWindow()
         {
-            TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
-            timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             TimeCardGUI.TimeCardDataSet timeCardDataSet = ((TimeCardGUI.TimeCardDataSet)(this.FindResource("timeCardDataSet")));
             // Load data into the table TimeCard. You can modify this code as needed.
             TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter = new TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter();

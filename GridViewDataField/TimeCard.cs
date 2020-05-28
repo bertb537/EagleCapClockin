@@ -1,7 +1,6 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Security.Permissions;
 using System.Text;
@@ -11,16 +10,13 @@ using System.Xml.Serialization;
 
 namespace GridViewDataField
 {
-    public class TimeCardInterface
+    public class TimeCard
     {
         public enum TimeCategory
         {
             DAY, WEEK, MONTH, QUARTER
         }
-        public TimeCardInterface(DataTable table) 
-        {
-            timeCard = table;
-        }
+        public TimeCard() { }
 
         // Public Methods
         public void ClockIn()
@@ -49,11 +45,10 @@ namespace GridViewDataField
 
         // Getters/Setters
         public String Username {get; set;}
-        public List<String> Users { get; set; }
 
         // Member Data
-        private DataTable timeCard;
         private String username;
-        private List<String> users;
+        private List<String> Users;
+        private String XmlPath = "TimeCardXML.xml";
     }
 }

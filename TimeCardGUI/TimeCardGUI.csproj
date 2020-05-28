@@ -113,11 +113,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GridViewDataField\TimeCardData.csproj">
-      <Project>{7110f0d8-78c1-4ef9-816d-5f40e2aa3f2b}</Project>
-      <Name>TimeCardData</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
