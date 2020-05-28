@@ -1,5 +1,4 @@
-﻿using GridViewDataField;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,8 +22,6 @@ namespace TimeCardGUI
     {
         public TimeCardInterface timeCard;
         public TimeCardGUI.TimeCardDataSet timeCardDataSet;
-        public enum Clocked { IN, OUT }
-        public Clocked UserState = Clocked.OUT;
 
         public MainWindow()
         {
@@ -44,10 +41,11 @@ namespace TimeCardGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(UserState == Clocked.IN)
-            {
-                timeCard.ClockIn();
-            }
+            //if(UserState == Clocked.IN)
+            //{
+            //    timeCard.ClockIn();
+            //    timeCard.GetTime()
+            //}
         }
     }
 }
