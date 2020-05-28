@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeCardData", "GridViewDataField\TimeCardData.csproj", "{7110F0D8-78C1-4EF9-816D-5F40E2AA3F2B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeCardGUI", "TimeCardGUI\TimeCardGUI.csproj", "{197EF3FB-3199-4881-8278-C582AD766929}"
 EndProject
 Global
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7110F0D8-78C1-4EF9-816D-5F40E2AA3F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7110F0D8-78C1-4EF9-816D-5F40E2AA3F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7110F0D8-78C1-4EF9-816D-5F40E2AA3F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7110F0D8-78C1-4EF9-816D-5F40E2AA3F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{197EF3FB-3199-4881-8278-C582AD766929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{197EF3FB-3199-4881-8278-C582AD766929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{197EF3FB-3199-4881-8278-C582AD766929}.Release|Any CPU.ActiveCfg = Release|Any CPU
