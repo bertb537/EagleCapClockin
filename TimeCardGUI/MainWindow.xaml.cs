@@ -22,8 +22,11 @@ namespace TimeCardGUI
     {
         public TimeCardInterface timeCard;
 <<<<<<< HEAD
+<<<<<<< HEAD
         public TimeCardGUI.TimeCardDataSet timeCardDataSet;
 
+=======
+>>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
 =======
 >>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
         public MainWindow()
@@ -42,6 +45,7 @@ namespace TimeCardGUI
             System.Windows.Data.CollectionViewSource timeCardViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("timeCardViewSource")));
             timeCardViewSource.View.MoveCurrentToFirst();
 <<<<<<< HEAD
+<<<<<<< HEAD
             timeCard = new TimeCardInterface(timeCardDataSet.TimeCard);
         }
 
@@ -52,6 +56,8 @@ namespace TimeCardGUI
             //    timeCard.ClockIn();
             //    timeCard.GetTime()
             //}
+=======
+>>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
 =======
 >>>>>>> parent of 8d0f7f8... Depency and Organization issues solved. TimeCard class is now housed in GUI project; TimeCardData project removed
         }
