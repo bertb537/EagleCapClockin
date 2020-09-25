@@ -60,7 +60,6 @@ namespace TimeCardGUI
             newRow[3] = "";
             timeCard.Rows.Add(newRow);
             userState = Clocked.IN;
-            timeCard.
         }
 
         /// <summary>
@@ -68,7 +67,7 @@ namespace TimeCardGUI
         /// </summary>
         public void ClockOut()
         {
-            newRow[2] = DateTime.Now.ToString("en - US");
+            newRow[2] = DateTime.Now.ToString();
             newRow[3] = "<Description>";
             userState = Clocked.OUT;
         }

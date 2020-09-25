@@ -4,5 +4,8 @@
 
     partial class TimeCardDataSet
     {
+        partial class TimeCardDataTable
+        {
+        }
     }
 }

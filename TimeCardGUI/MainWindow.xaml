@@ -21,7 +21,7 @@
                 <MenuItem Header="File" Style="{StaticResource MenuItemStyle}"></MenuItem>
             </Menu>
             <Label Grid.Column="1" Style="{StaticResource LoginLabelStyle}">Login:</Label>
-            <TextBox Grid.Column="2" Style="{StaticResource TextBoxStyle}"></TextBox>
+            <TextBox x:Name="UserLoginTextBox"  Grid.Column="2" Style="{StaticResource TextBoxStyle}"></TextBox>
         </Grid>
         <Grid>
             <DataGrid x:Name="timeCardDataGrid" Style="{DynamicResource DataGridStyle}">

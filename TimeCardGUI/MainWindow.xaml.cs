@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace TimeCardGUI
 {
@@ -44,15 +45,19 @@ namespace TimeCardGUI
         {
             if(timeCard.UserState == TimeCardInterface.Clocked.OUT)
             {
+                UserLoginTextBox.Text = "ClockingIn";
                 timeCard.ClockIn();
                 CardPunchBtn.Content = "Clock-Out";
+                UserLoginTextBox.Text = "ClockedIn";
             }
             else if(timeCard.UserState == TimeCardInterface.Clocked.IN)
             {
+                UserLoginTextBox.Text = "ClockingOut";
                 timeCard.ClockOut();
                 // Get Description From User
                 //timeCard.SetDescription(STRING);
                 CardPunchBtn.Content = "Clock-In";
+                UserLoginTextBox.Text = "ClockedOut";
             }
         }
     }

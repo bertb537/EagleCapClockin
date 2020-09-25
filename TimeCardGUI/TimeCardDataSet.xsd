@@ -71,7 +71,7 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
   <xs:element name="TimeCardDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TimeCardDataSet" msprop:Generator_UserDSName="TimeCardDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TimeCard" msprop:Generator_TableClassName="TimeCardDataTable" msprop:Generator_TableVarName="tableTimeCard" msprop:Generator_RowChangedName="TimeCardRowChanged" msprop:Generator_TablePropName="TimeCard" msprop:Generator_RowDeletingName="TimeCardRowDeleting" msprop:Generator_RowChangingName="TimeCardRowChanging" msprop:Generator_RowEvHandlerName="TimeCardRowChangeEventHandler" msprop:Generator_RowDeletedName="TimeCardRowDeleted" msprop:Generator_RowClassName="TimeCardRow" msprop:Generator_UserTableName="TimeCard" msprop:Generator_RowEvArgName="TimeCardRowChangeEvent">
+        <xs:element name="TimeCard" msprop:Generator_TableClassName="TimeCardDataTable" msprop:Generator_TableVarName="tableTimeCard" msprop:Generator_TablePropName="TimeCard" msprop:Generator_RowDeletingName="TimeCardRowDeleting" msprop:Generator_RowChangingName="TimeCardRowChanging" msprop:Generator_RowEvHandlerName="TimeCardRowChangeEventHandler" msprop:Generator_RowDeletedName="TimeCardRowDeleted" msprop:Generator_UserTableName="TimeCard" msprop:Generator_RowChangedName="TimeCardRowChanged" msprop:Generator_RowEvArgName="TimeCardRowChangeEvent" msprop:Generator_RowClassName="TimeCardRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
@@ -95,9 +95,5 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TimeCard" />
-      <xs:field xpath="mstns:Name" />
-    </xs:unique>
   </xs:element>
 </xs:schema>

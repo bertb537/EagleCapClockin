@@ -403,13 +403,6 @@ namespace TimeCardGUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TimeCardRow FindByName(string Name) {
-                return ((TimeCardRow)(this.Rows.Find(new object[] {
-                            Name})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TimeCardDataTable cln = ((TimeCardDataTable)(base.Clone()));
                 cln.InitVars();
@@ -446,10 +439,7 @@ namespace TimeCardGUI {
                 base.Columns.Add(this._columnClock_Out);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnName}, true));
                 this.columnName.AllowDBNull = false;
-                this.columnName.Unique = true;
                 this.columnName.MaxLength = 50;
                 this._columnClock_In.AllowDBNull = false;
                 this.columnDescription.MaxLength = 2147483647;
@@ -1063,14 +1053,6 @@ SELECT Name, [Clock-In], [Clock-Out], Description FROM TimeCard WHERE (Name = @N
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime p1, global::System.Nullable<global::System.DateTime> p3, string Description, string Original_Name, System.DateTime p2, global::System.Nullable<global::System.DateTime> p4) {
-            return this.Update(Original_Name, p1, p3, Description, Original_Name, p2, p4);
         }
     }
     
