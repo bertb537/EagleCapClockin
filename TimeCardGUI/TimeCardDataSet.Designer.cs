@@ -582,7 +582,7 @@ namespace TimeCardGUI {
                     base(rb) {
                 this.tableTimeCard = ((TimeCardDataTable)(this.Table));
             }
-            
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Name {

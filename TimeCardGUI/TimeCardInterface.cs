@@ -31,11 +31,17 @@ namespace TimeCardGUI
 
         public enum Clocked { IN, OUT }
 
-        public TimeCardInterface()
+        public TimeCardInterface(ref TimeCardGUI.TimeCardDataSet timeCardDataSet_, 
+            ref TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter_,
+            ref System.Windows.Data.CollectionViewSource timeCardViewSource_)
         {
             userState = Clocked.OUT;
             timeCard = TimeCard;
             username = "Brett Bertrand";
+
+            timeCardDataSet = timeCardDataSet_;
+            timeCardDataSetTimeCardTableAdapter = timeCardDataSetTimeCardTableAdapter_;
+            timeCardViewSource = timeCardViewSource_;
         }
 
         // Public Methods
@@ -54,12 +60,13 @@ namespace TimeCardGUI
         /// </summary>
         public void ClockIn()
         {
-            newRow = timeCard.NewRow();
+            newRow = timeCardDataSet.TimeCard.NewRow();
             newRow[0] = username;
             newRow[1] = DateTime.Now.ToString();
             newRow[3] = "";
-            timeCard.Rows.Add(newRow);
+            timeCardDataSet.TimeCard.Rows.Add(newRow);
             userState = Clocked.IN;
+            //timeCardDataSet.TimeCard.AddTimeCardRow((TimeCardRow)newRow);
         }
 
         /// <summary>
@@ -119,5 +126,9 @@ namespace TimeCardGUI
         private List<String> users;
         private Clocked userState;
         private DataRow newRow;
+
+        private TimeCardGUI.TimeCardDataSet timeCardDataSet;
+        private TimeCardGUI.TimeCardDataSetTableAdapters.TimeCardTableAdapter timeCardDataSetTimeCardTableAdapter;
+        private System.Windows.Data.CollectionViewSource timeCardViewSource;
     }
 }

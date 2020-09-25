@@ -38,7 +38,7 @@ namespace TimeCardGUI
             timeCardDataSetTimeCardTableAdapter.Fill(timeCardDataSet.TimeCard);
             System.Windows.Data.CollectionViewSource timeCardViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("timeCardViewSource")));
             timeCardViewSource.View.MoveCurrentToFirst();
-            timeCard = new TimeCardInterface();
+            timeCard = new TimeCardInterface(ref timeCardDataSet, ref timeCardDataSetTimeCardTableAdapter, ref timeCardViewSource);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
