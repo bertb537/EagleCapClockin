@@ -12,7 +12,7 @@ namespace ClockInDll
     public class Database
     {
         SQLiteConnection connection;
-        SQLiteCommand cmd;
+        SQLiteCommand command;
         public enum Clocked 
         {
             IN, OUT 
@@ -28,15 +28,16 @@ namespace ClockInDll
         /// </summary>
         public Database()
         {
+            BuildDB();
             connection = new SQLiteConnection("Data Source = ClockInDB.db; Version = 3;");
-            cmd = connection.CreateCommand();
+            command = connection.CreateCommand();
             try
             {
                 connection.Open();
             }
-            catch(Exception)
+            catch(Exception x)
             {
-                MessageBox.Show("Failed to Connect to the Database. Please try again.");
+                MessageBox.Show("Failed to connect to the database. Please try again. " + x.ToString());
             }
         }
 
@@ -52,6 +53,21 @@ namespace ClockInDll
             }
         }
 
-        
+        /// <summary>
+        /// Adds the users name to the Users table
+        /// </summary>
+        /// <param name="UserName"></param>
+        public void CreateUser(string UserName)
+        {
+            command.CommandText = "INSERT INTO TABLE Users (name) VALUES('" + UserName + "');";
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch(Exception x)
+            {
+                MessageBox.Show("Failed to add user. Please try again. " + x.ToString());
+            }
+        }
     }
 }
