@@ -138,7 +138,7 @@ namespace ClockInDll
         }
 
         /// <summary>
-        /// Swap
+        /// Swap users and update the datatable
         /// </summary>
         /// <param name="Username">string</param>
         /// <returns>DataTable</returns>
@@ -164,6 +164,7 @@ namespace ClockInDll
                     }
                 }
             }
+            current_user = Username;
             return timecard;
         }
     }
