@@ -14,8 +14,9 @@ namespace ClockInDll
     public class Database
     {
         DataTable timecard;
-        string connection_string;
         List<string> users;
+        string connection_string;
+        string current_user;
 
         public enum Clocked 
         {
@@ -44,7 +45,7 @@ namespace ClockInDll
                 }
                 catch (Exception x)
                 {
-                    MessageBox.Show("Failed to connect to the database. Please try again. " + x.ToString());
+                    MessageBox.Show("Failed to connect to the database. \nPlease try again. \n" + x.ToString());
                 }
             }
 
@@ -98,8 +99,16 @@ namespace ClockInDll
                 {
                     using(SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
                     {
+                        command.CommandText = "SELECT * FROM Timecard;";
                         timecard = new DataTable();
-                        adapter.Fill(timecard);
+                        try
+                        {
+                            adapter.Fill(timecard);
+                        }
+                        catch(Exception x)
+                        {
+                            MessageBox.Show("There was an error retrieving data from the database. \nPlease try again. \n" + x.ToString());
+                        }
                     }
                 }
             }
@@ -108,14 +117,14 @@ namespace ClockInDll
         /// <summary>
         /// Adds the users name to the Users table
         /// </summary>
-        /// <param name="UserName"></param>
-        public void CreateUser(string UserName)
+        /// <param name="Username">string</param>
+        public void CreateUser(string Username)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connection_string))
             {
-                using (SQLiteCommand command = new SQLiteCommand())
+                using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
-                    command.CommandText = "INSERT INTO TABLE Users (name) VALUES('" + UserName + "');";
+                    command.CommandText = "INSERT INTO TABLE Users (name) VALUES('" + Username + "');";
                     try
                     {
                         command.ExecuteNonQuery();
@@ -126,7 +135,36 @@ namespace ClockInDll
                     }
                 }
             }
-            
+        }
+
+        /// <summary>
+        /// Swap
+        /// </summary>
+        /// <param name="Username">string</param>
+        /// <returns>DataTable</returns>
+        public DataTable SwitchUser(string Username)
+        {
+            using(SQLiteConnection connection = new SQLiteConnection(connection_string))
+            {
+                using(SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    using(SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                    {
+                        command.CommandText = "SELECT * FROM Timecard WHERE name='" + Username + "';";
+                        try
+                        {
+                            timecard = new DataTable();
+                            adapter.Fill(timecard);
+                        }
+                        catch(Exception x)
+                        {
+                            MessageBox.Show("Failed to retrieve new user from the database. \nPlease try again. \n" + x.ToString());
+                            return null;
+                        }
+                    }
+                }
+            }
+            return timecard;
         }
     }
 }
