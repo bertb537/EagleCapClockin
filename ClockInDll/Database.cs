@@ -8,15 +8,24 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.CodeDom;
 
 namespace ClockInDll
 {
     public class Database
     {
-        DataTable timecard;
-        List<string> users;
-        string connection_string;
-        string current_user;
+        private DataTable timecard;
+        private DataRow new_row;
+        private List<string> users;
+        private string connection_string;
+        private string current_user;
+
+        public DataTable Timecard
+        { get { return timecard; } }
+
+        public string CurrentUser
+        { get { return current_user; } }
 
         public enum Clocked 
         {
@@ -54,8 +63,8 @@ namespace ClockInDll
         }
 
         /// <summary>
-        /// Builds Database. Generates .db file in bin/debug
-        /// Used to create the necessary database if it doesn't already exist
+        /// Builds Database. Generates .db file in bin/debug. 
+        /// Used to create the necessary database if it doesn't already exist.
         /// </summary>
         private void BuildDB()
         {
@@ -88,7 +97,7 @@ namespace ClockInDll
         }
 
         /// <summary>
-        /// Populates DataTable data member with the full timecard 
+        /// Populates DataTable data member with the full timecard.
         /// (for launch screen)
         /// </summary>
         private void PopulateFullTimecard()
@@ -115,7 +124,7 @@ namespace ClockInDll
         }
 
         /// <summary>
-        /// Adds the users name to the Users table
+        /// Adds the users name to the Users table.
         /// </summary>
         /// <param name="Username">string</param>
         public void CreateUser(string Username)
@@ -138,7 +147,7 @@ namespace ClockInDll
         }
 
         /// <summary>
-        /// Swap users and update the datatable
+        /// Swap users and update the datatable.
         /// </summary>
         /// <param name="Username">string</param>
         /// <returns>DataTable</returns>
@@ -165,6 +174,34 @@ namespace ClockInDll
                 }
             }
             current_user = Username;
+            return timecard;
+        }
+
+        /// <summary>
+        /// Creates the first part of the new row and returns the time.
+        /// </summary>
+        /// <returns>DateTime</returns>
+        public DateTime ClockIn()
+        {
+            DateTime now = DateTime.Now;
+            new_row = timecard.NewRow();
+            new_row["name"] = current_user;
+            new_row["time_in"] = now;
+
+            return now;
+        }
+
+        /// <summary>
+        /// Fills in the rest of the row, adds it to the timecard, and returns it.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable ClockOut()
+        {
+            DateTime now = DateTime.Now;
+            new_row["time_out"] = now;
+            new_row["description"] = "";
+            timecard.Rows.Add(new_row);
+
             return timecard;
         }
     }
